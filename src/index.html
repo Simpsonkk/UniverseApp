@@ -9,13 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <script src="modules/APOD.js"></script>
     <title>APOD</title>
   </head>
   <body>
     <header class="header"> 
         <div class="header__container">
-          <nav class="header__menu row justify-content-center"> 
-            <img class="header__icon col-auto p-0" src="./img/icon_planet.png" width="58px" height="62px" alt="icon planet">
+          <nav class="header__menu row"> 
+            <img class="header__icon col-auto" src="./img/icon_planet.png" width="58px" height="62px" alt="icon planet">
             <a class="header__link header__link_selected col-auto" href="">APOD</a>
             <a class="header__link col-auto" href="">Earth</a>
             <img class="header__icon col-auto" src="img/NASA_logo.webp" width="74px" height="72px" alt="icon NASA">
@@ -26,46 +27,36 @@
         </div>
     </header>
     <main>
-      <div class="container ">
-        <div class="initial-page ">
+      <div id="mainPage" class="container" >
+        <div class="initial-page">
           <div class="initial-page__title row justify-content-center">
             <p class="col-auto">Astronomy Picture of the Day</p>
           </div>
-          <!-- <div class="w-100"></div>   -->
-          <div class="initial-page__descripition row g-0 mt-2">
+          <div class="initial-page__description row g-0 mt-2">
             <p class="col-auto" >Discover the cosmos! Choose a date and ENJOY! 
               Photograph of our fascinating universe is featured, along with a brief explanation 
               written by a professional astronomer.
             </p>
           </div>
-      
           <div class="initial-page__actions row g-0">
-            <input class="initial-page__input col-auto" placeholder="2020-01-01"></input>
-            <button class="initial-page__button col-auto">Find by certain date</button>
+            <input id="apodDateInput1" class="initial-page__input col-auto" onblur="setDate(document.getElementById('apodDateInput1').value)" placeholder="2020-01-10"></input>
+            <button class="initial-page__button col-auto" onclick="getImage()">Enjoy</button>
           </div>
         </div>
       </div>  
-        <div class="selected-photo-body hidden">
-          <div class="selected-photo__row row justify-content-center">
-            <!-- <div class="selected-photo__title me-4 col-auto"> -->
-              <p class="selected-photo__title сol-auto"></p>
-            <!-- </div> -->
-            <!-- <div class="selected-photo__img row g-0 m-0"> -->
-              <img class="selected-photo__img">
-            <!-- </div> -->
-            <div class="selected-photo__footer row">
-              <input class="selected-photo__input initial-page__input col-auto " placeholder="2020-01-01" ></input>
-              <p class="selected-photo__description col-auto"></p>
-              <button class="selected-photo__button col-auto" >Find by certain date</button>
-            </div>
-          </div>
-
-          <!-- <div class="selected-photo__footer row">
-            <input class="selected-photo__input col-auto" placeholder="2020-01-01"></input>
-            <p class="selected-photo__description col-auto"></p>
-            <button class="selected-photo__button col-auto">Find by certain date</button>
-          </div> -->
+      <div id="secondPage" class="selected-photo hidden" >
+        <div class="selected-photo__header row">
+          <p id="photoTitle" class="selected-photo__title сol-auto"></p>
+          <img id="photoImg" class="selected-photo__img">
         </div>
+        <div class="selected-photo__footer row">
+          <p id="photoDescription" class="selected-photo__description col-auto"></p>
+          <div class="selected-photo__actions col-auto">
+            <input id="apodDateInput2" class="selected-photo__input" onblur="setDate(document.getElementById('apodDateInput2').value)" placeholder="2020-01-10"></input>
+            <button class="selected-photo__button" onclick="getImage()">Enjoy</button>
+          </div> 
+        </div>
+      </div>
     </main>
   </body>
 </html>

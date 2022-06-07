@@ -14,8 +14,8 @@
   <body>
     <header class="header"> 
         <div class="header__container">
-          <nav class="header__menu row justify-content-center"> 
-            <img class="header__icon col-auto p-0" src="3a55b3a7441663e2beaa.png" width="58px" height="62px" alt="icon planet">
+          <nav class="header__menu row"> 
+            <img class="header__icon col-auto" src="3a55b3a7441663e2beaa.png" width="58px" height="62px" alt="icon planet">
             <a class="header__link header__link_selected col-auto" href="">APOD</a>
             <a class="header__link col-auto" href="">Earth</a>
             <img class="header__icon col-auto" src="8f7cf7002ad7e0b52e5b.webp" width="74px" height="72px" alt="icon NASA">
@@ -31,36 +31,29 @@
           <div class="initial-page__title row justify-content-center">
             <p class="col-auto">Astronomy Picture of the Day</p>
           </div>
-          <!-- <div class="w-100"></div>   -->
-          <div class="initial-page__descripition row g-0 mt-2">
+          <div class="initial-page__description row g-0 mt-2">
             <p class="col-auto" >Discover the cosmos! Choose a date and ENJOY! 
               Photograph of our fascinating universe is featured, along with a brief explanation 
               written by a professional astronomer.
             </p>
           </div>
-      
           <div class="initial-page__actions row g-0">
-            <input class="initial-page__input col-auto" placeholder="2020-01-01"></input>
-            <button class="initial-page__button col-auto">Find by certain date</button>
+            <input class="initial-page__input col-auto" placeholder="2020-01-10"></input>
+            <button class="initial-page__button col-auto" onclick="setDate()">Find by certain date</button>
           </div>
         </div>
       </div>  
-        <div class="selected-photo-body hide">
-          <div class="selected-photo__row row justify-content-center">
-            <div class="selected-photo__title me-4 col-auto">
-              <p class="m-0">Place for title</p>
-            </div>
-            <div class="selected-photo__img row g-0 m-0">
-              <img class="col-auto g-0 m-0" src="e9c55f6e4a81f0d86437.jpg" width="1400px" 
-              height="800px"  alt="">
-            </div>
-          </div>
-          <div class="selected-photo__footer row">
-            <input class="selected-photo__input col-auto" placeholder="2020-01-01"></input>
-            <p class="selected-photo__description col-auto">"On certain dates in February, an elusive firefall can be spotted at sunset in Yosemite National Park, when water flows, the weather cooperates and the direction to the setting Sun is just right. Often photographed from vantage points below, at the right moment the park's seasonal Horsetail Fall is isolated in the shadows of the steep walls of El Capitan. Then, still illuminated with rays of reddened sunlight the waterfall briefly takes on a dramatic, fiery appearance. But a Horsetail firefall can be photographed by moonlight too. Even more elusive by moonlight, the firefall effect can also be seen when a bright Moon sets at the right direction along the western horizon. And skies were clear enough for this well-planned imaging of an ephemeral Horsetail firefall, lit by a bright gibbous Moon setting in the early morning hours of April 15."</p>
-            <button class="selected-photo__button col-auto">Find by certain date</button>
-          </div>
+      <div class="selected-photo-body hidden">
+        <div class="selected-photo__header row">
+          <p class="selected-photo__title сol-auto"></p>
+          <img class="selected-photo__img">
         </div>
+        <div class="selected-photo__footer row">
+          <input class="selected-photo__input col-auto " placeholder="2020-01-10"></input>
+          <p class="selected-photo__description col-auto"></p>
+          <button class="selected-photo__button col-auto" onclick="setDate()">Find by certain date</button>
+        </div>
+      </div>
     </main>
   </body>
 </html>

@@ -27,17 +27,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _pages_APOD_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/APOD.js */ \"./src/pages/APOD.js\");\n/* harmony import */ var _pages_APOD_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_pages_APOD_js__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\n\n\n\n//# sourceURL=webpack://universeapp/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scss/index.scss */ \"./src/scss/index.scss\");\n/* harmony import */ var _modules_APOD__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/APOD */ \"./src/modules/APOD.js\");\n/* harmony import */ var _modules_APOD__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_APOD__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\n//# sourceURL=webpack://universeapp/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/pages/APOD.js":
-/*!***************************!*\
-  !*** ./src/pages/APOD.js ***!
-  \***************************/
+/***/ "./src/modules/APOD.js":
+/*!*****************************!*\
+  !*** ./src/modules/APOD.js ***!
+  \*****************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (1:35)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n> export function initEventListeners {\\n|   document.querySelector('.initial-page__button').addEventListener('click', setDate)\\n| }\");\n\n//# sourceURL=webpack://universeapp/./src/pages/APOD.js?");
+eval("// function initEventListeners() {\n//   const btns = document.querySelectorAll('button');\n//   btns.forEach((btn) => {\n//     btn.addEventListener('click', setDate);\n//   })\n// }\n// initEventListeners();\n\nasync function setDate() {\n  document.querySelector('.container').classList.add('hidden');\n  document.querySelector('.selected-photo-body').classList.remove('hidden');\n  document.querySelector('main').classList.add('changed-size-page');\n  // document.querySelector('.selected-photo__img').removeAttribute('src')\n  // document.querySelector('.selected-photo__description').textContent = '';\n\n  const selectedDate = document.querySelector('.initial-page__input').value;\n  // const s = document.querySelector('.selected-photo__input').value;\n\n  \n  \n  if (selectedDate == '') {\n    var response = await fetch(\n      'https://api.nasa.gov/planetary/apod?api_key=gn2Lwrt5ugX66tQzW4fN40bcfYdQZWCkrefgN7P4&count=1',\n    );\n    const photo = await response.json();\n    document.querySelector('.selected-photo__img').setAttribute('src', `${photo[0].url}`)\n    document.querySelector('.selected-photo__title').textContent = photo[0].title;\n    document.querySelector('.selected-photo__description').textContent = photo[0].explanation;\n  }\n  else {\n    var response = await fetch(\n      `https://api.nasa.gov/planetary/apod?api_key=gn2Lwrt5ugX66tQzW4fN40bcfYdQZWCkrefgN7P4&date=${selectedDate}`,\n    );\n    const photo = await response.json();\n    document.querySelector('.selected-photo__img').setAttribute('src', `${photo.url}`)\n    document.querySelector('.selected-photo__title').textContent = photo.title;\n    document.querySelector('.selected-photo__description').textContent = photo.explanation;\n  }\n  selectedDate = document.querySelector('.selected-photo__input').value;\n\n  document.querySelector('.initial-page__input').value = '';\n  // document.querySelector('.selected-photo__input').value = ''\n}\n\n\n//# sourceURL=webpack://universeapp/./src/modules/APOD.js?");
 
 /***/ })
 
