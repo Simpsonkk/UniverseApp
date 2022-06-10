@@ -167,3 +167,26 @@ input {
   height: 1400px;
   overflow-x: hidden;
 }
+
+.initial-page__depiction {
+  // width: 50%;
+  font-family: 'New Tegomin', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 52px;
+  color: #debb04;
+  text-align: center;
+  width: 620px;
+  margin: 0;
+}
+
+.selected-photo {
+  opacity: 0;
+  animation: ani 2.5s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
