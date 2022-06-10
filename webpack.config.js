@@ -3,11 +3,23 @@ const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry: {
+    pageOne: './src/modules/apod.js',
+    pageTwo: './src/modules/epic.js',
+    // pageThree: './src/pageThree/earth.js',
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 1,
+      minChunks: 2,
+    },
+  },
+  // entry: './src/index.js',
+  // output: {
+  //   filename: 'bundle.js',
+  //   path: path.resolve(__dirname, 'dist'),
+  // },
   resolve: {
     alias: {
       images: path.resolve(__dirname, 'src/img/'),
@@ -22,8 +34,16 @@ module.exports = {
   },
   plugins: [
     new HTMLPlugin({
-      filename: 'index.html',
-      template: './src/index.html',
+      filename: 'apod.html',
+      template: './src/apod.html',
+      chunks: ['pageOne'],
+      // inject: false,
+    }),
+    new HTMLPlugin({
+      filename: 'epic.html',
+      template: './src/epic.html',
+      chunks: ['pageTwo'],
+      // inject: false,
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',

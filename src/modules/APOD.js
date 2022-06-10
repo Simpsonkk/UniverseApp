@@ -1,5 +1,19 @@
+import '../scss/apod.scss';
+
+let selectedDate = '';
+
+function initEventListeners() {
+  document.getElementById('apodDateButton1').addEventListener('click', getImage);
+  document.getElementById('apodDateButton2').addEventListener('click', getImage);
+  document.getElementById('apodDateInput1')
+    .addEventListener('blur', () => setDate(document.getElementById('apodDateInput1').value));
+  document.getElementById('apodDateInput2')
+    .addEventListener('blur', () => setDate(document.getElementById('apodDateInput2').value));
+}
+initEventListeners();
+
 function setDate(value) {
-  this.selectedDate = value;
+  selectedDate = value;
 }
 
 function setCurrentDate() {
@@ -10,7 +24,7 @@ function setCurrentDate() {
 }
 setCurrentDate();
 
-function changeClass() {
+function changesClass() {
   document.getElementById('mainPage').classList.add('hidden');
   document.getElementById('secondPage').classList.remove('hidden');
   document.querySelector('main').classList.add('changed-size-page');
@@ -23,19 +37,20 @@ function setImage(data) {
 }
 
 async function getImage() {
-  changeClass();
-  if (this.selectedDate == '') {
-    var response = await fetch(
-      'https://api.nasa.gov/planetary/apod?api_key=gn2Lwrt5ugX66tQzW4fN40bcfYdQZWCkrefgN7P4&count=1',
+  changesClass();
+  if (selectedDate === '') {
+    const response = await fetch(
+      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&count=1',
     );
     const photo = await response.json();
     setImage(photo[0]);
   } else {
-    var response = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=gn2Lwrt5ugX66tQzW4fN40bcfYdQZWCkrefgN7P4&date=${this.selectedDate}`,
+    const response = await fetch(
+      `https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&date=${selectedDate}`,
     );
     const photo = await response.json();
     setImage(photo);
   }
+  document.getElementById('apodDateInput2').value = '';
   setDate('');
 }

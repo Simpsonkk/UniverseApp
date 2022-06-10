@@ -10,24 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
     <title>APOD</title>
-  <script defer src="bundle.js"></script><link href="style.css" rel="stylesheet"></head>
+  </head>
   <body>
-    <header class="header"> 
+    <header class="header">
         <div class="header__container">
           <nav class="header__menu row"> 
-            <img class="header__icon col-auto" src="3a55b3a7441663e2beaa.png" width="58px" height="62px" alt="icon planet">
+            <img class="header__icon col-auto" src="./img/icon_planet.png" width="58px" height="62px" alt="icon planet">
             <a class="header__link header__link_selected col-auto" href="">APOD</a>
             <a class="header__link col-auto" href="">Earth</a>
-            <img class="header__icon col-auto" src="8f7cf7002ad7e0b52e5b.webp" width="74px" height="72px" alt="icon NASA">
+            <img class="header__icon col-auto" src="img/NASA_logo.webp" width="74px" height="72px" alt="icon NASA">
             <a class="header__link col-auto" href="">EPIC</a>
             <a class="header__link col-auto" href="">NASA APIs</a> 
-            <img class="header__icon col-auto" src="0e353540357a40d9e74f.png" width="58px" height="62px" alt="icon planet">
+            <img class="header__icon col-auto" src="img/icon_planet_reverse.png" width="58px" height="62px" alt="icon planet">
           </nav>
         </div>
     </header>
     <main>
-      <div class="container">
-        <div class="initial-page ">
+      <div id="mainPage" class="container">
+        <div class="initial-page">
           <div class="initial-page__title row justify-content-center">
             <p class="col-auto">Astronomy Picture of the Day</p>
           </div>
@@ -38,20 +38,22 @@
             </p>
           </div>
           <div class="initial-page__actions row g-0">
-            <input class="initial-page__input col-auto" placeholder="2020-01-10"></input>
-            <button class="initial-page__button col-auto" onclick="setDate()">Find by certain date</button>
+            <input id="apodDateInput1" class="initial-page__input col-auto" placeholder="2020-01-10"></input>
+            <button id="apodDateButton1" class="initial-page__button col-auto">Enjoy</button>
           </div>
         </div>
       </div>  
-      <div class="selected-photo-body hidden">
+      <div id="secondPage" class="selected-photo hidden">
         <div class="selected-photo__header row">
-          <p class="selected-photo__title сol-auto"></p>
-          <img class="selected-photo__img">
+          <p id="photoTitle" class="selected-photo__title сol-auto"></p>
+          <img id="photoImg" class="selected-photo__img">
         </div>
         <div class="selected-photo__footer row">
-          <input class="selected-photo__input col-auto " placeholder="2020-01-10"></input>
-          <p class="selected-photo__description col-auto"></p>
-          <button class="selected-photo__button col-auto" onclick="setDate()">Find by certain date</button>
+          <p id="photoDescription" class="selected-photo__description col-auto"></p>
+          <div class="selected-photo__actions col-auto">
+            <input id="apodDateInput2" class="selected-photo__input" placeholder="2020-01-10"></input>
+            <button id="apodDateButton2" class="selected-photo__button">Enjoy</button>
+          </div> 
         </div>
       </div>
     </main>
