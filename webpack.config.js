@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    pageOne: './src/modules/apod.js',
-    pageTwo: './src/modules/epic.js',
+    pageOne: 'C:/My_files/IT/UniverseApp/src/modules/apod/apod.js',
+    pageTwo: 'C:/My_files/IT/UniverseApp/src/modules/epic/epic.js',
     // pageThree: './src/pageThree/earth.js',
   },
   optimization: {
@@ -22,7 +22,7 @@ module.exports = {
   // },
   resolve: {
     alias: {
-      images: path.resolve(__dirname, 'src/img/'),
+      images: path.resolve(__dirname, 'src/assets/img/'),
     },
   },
   devServer: {
@@ -35,13 +35,13 @@ module.exports = {
   plugins: [
     new HTMLPlugin({
       filename: 'apod.html',
-      template: './src/apod.html',
+      template: 'C:/My_files/IT/UniverseApp/src/modules/apod/apod.html',
       chunks: ['pageOne'],
       // inject: false,
     }),
     new HTMLPlugin({
       filename: 'epic.html',
-      template: './src/epic.html',
+      template: 'C:/My_files/IT/UniverseApp/src/modules/epic/epic.html',
       chunks: ['pageTwo'],
       // inject: false,
     }),

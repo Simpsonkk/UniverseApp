@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/modules/epic.js":
-/*!*****************************!*\
-  !*** ./src/modules/epic.js ***!
-  \*****************************/
+/***/ "./src/modules/epic/epic.js":
+/*!**********************************!*\
+  !*** ./src/modules/epic/epic.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_apod_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/apod.scss */ \"./src/scss/apod.scss\");\n\n\n\n//# sourceURL=webpack://universeapp/./src/modules/epic.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/styles/style.scss */ \"./src/styles/style.scss\");\n\n// import './src/styles/style.scss';\n\n//# sourceURL=webpack://universeapp/./src/modules/epic/epic.js?");
 
 /***/ })
 
@@ -156,7 +156,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["src_scss_apod_scss"], () => (__webpack_require__("./src/modules/epic.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["src_styles_style_scss"], () => (__webpack_require__("./src/modules/epic/epic.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

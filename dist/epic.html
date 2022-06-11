@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
     <title>EPIC</title>
-  <script defer src="src_scss_apod_scss.js"></script><script defer src="pageTwo.js"></script><link href="style.css" rel="stylesheet"></head>
+  <script defer src="src_styles_style_scss.js"></script><script defer src="pageTwo.js"></script><link href="style.css" rel="stylesheet"></head>
   <body>
     <header class="header"> 
         <div class="header__container">
@@ -26,17 +26,17 @@
         </div>
     </header>
     <main>
-      <div id="mainPage" class="container" >
+      <div id="mainPage" class="wrapper">
         <div class="initial-page">
           <div class="initial-page__title row justify-content-center">
-            <p class="col-auto">Astronomy Picture of the Day</p>
+            <p class="col-auto">Earth Polychromatic Imaging Camera</p>
           </div>
-          <div class="initial-page__description row g-0 mt-2">
+          <div class="initial-page__depiction row g-0 mt-2">
             <p class="col-auto" >The EPIC provides information on the daily imagery collected by DSCOVR's Earth Polychromatic Imaging Camera instrument. Uniquely positioned at the Earth-Sun Lagrange point, EPIC provides full disc imagery of the Earth and captures unique perspectives of certain astronomical events.
             </p>
           </div>
           <div class="initial-page__actions row g-0">
-            <button class="initial-page__button col-auto" onclick="getImage()">Enjoy</button>
+            <button class="initial-page__main-button col-auto">Enjoy</button>
           </div>
         </div>
       </div>  
@@ -48,8 +48,8 @@
         <div class="selected-photo__footer row">
           <p id="photoDescription" class="selected-photo__description col-auto"></p>
           <div class="selected-photo__actions col-auto">
-            <input id="apodDateInput2" class="selected-photo__input" onblur="setDate(document.getElementById('apodDateInput2').value)" placeholder="2020-01-10"></input>
-            <button class="selected-photo__button" onclick="getImage()">Enjoy</button>
+            <input id="apodDateInput2" class="selected-photo__input"></input>
+            <button class="selected-photo__button">Enjoy</button>
           </div> 
         </div>
       </div>
