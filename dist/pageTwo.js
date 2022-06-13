@@ -16,7 +16,7 @@
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/styles/style.scss */ \"./src/styles/style.scss\");\n\n// import './src/styles/style.scss';\n\n//# sourceURL=webpack://universeapp/./src/modules/epic/epic.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/styles/style.scss */ \"./src/styles/style.scss\");\n\n// import AirDatepicker from 'air-datepicker';\n// import 'air-datepicker/air-datepicker.css';\n\n// // new AirDatepicker('#my-element'[, options]);\n\n\n\n//# sourceURL=webpack://universeapp/./src/modules/epic/epic.js?");
 
 /***/ })
 

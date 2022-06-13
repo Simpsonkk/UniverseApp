@@ -76,7 +76,7 @@ input::placeholder {
 }
 
 .initial-page__button,
-.selected-photo__button {
+.selected-photo__datepicker {
   width: 205px;
   height: 49px;
 }
@@ -95,7 +95,8 @@ input {
   text-align: center;
 }
 
-.initial-page__actions {
+.initial-page__actions,
+.selected-photo__datepicker {
   margin-top: 20px;
 }
 
@@ -204,12 +205,28 @@ input {
   margin-top: 5px;
   margin-left: 200px;
   border: 0;
-  // &:hover {
-
-  // }
 }
 
 .initial-page__main-button:hover {
   border: 4px solid rgba(222, 186, 4, 0.493);
   transition-duration: 0.3s;  
 }
+
+.selected-photo__activity button:nth-child(3) {
+  width: 100px;
+}
+
+.selected-photo__activity button:nth-child(even) {
+  width: 200px;
+}
+
+.selected-photo__activity button:nth-of-type(n) {
+  margin-left: 50px;
+}
+
+.selected-photo__content img:last-child {
+  width: 900px;
+  height: 800px;
+}
+
+

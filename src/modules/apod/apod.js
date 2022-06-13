@@ -1,4 +1,4 @@
-import 'C:/My_files/IT/UniverseApp/src/styles/style.scss';
+import '/src/styles/style.scss';
 
 let selectedDate = '';
 
