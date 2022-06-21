@@ -31,7 +31,7 @@ function changesClass() {
 }
 
 function setImage(data) {
-  document.getElementById('photoImg').setAttribute('src', `${data.url}`);
+  document.getElementById('photoImg').setAttribute('src', data.url);
   document.getElementById('photoTitle').textContent = data.title;
   document.getElementById('photoDescription').textContent = data.explanation;
 }

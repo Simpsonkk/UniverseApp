@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="air-datepicker/air-datepicker.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>EPIC</title>
   <script defer src="src_styles_style_scss.js"></script><script defer src="pageTwo.js"></script><link href="style.css" rel="stylesheet"></head>
   <body>
@@ -27,7 +28,7 @@
         </div>
     </header>
     <main>
-      <div id="mainPage" class="wrapper hidden">
+      <div id="mainPage" class="wrapper">
         <div class="initial-page">
           <div class="initial-page__title row justify-content-center">
             <p class="col-auto">Earth Polychromatic Imaging Camera</p>
@@ -37,24 +38,36 @@
             </p>
           </div>
           <div class="initial-page__actions row g-0">
-            <button class="initial-page__main-button col-auto">Enjoy</button>
+            <button id="getNextPage" class="initial-page__main-button col-auto">Enjoy</button>
           </div>
         </div>
       </div>  
-      <div id="secondPage" class="selected-photo ">
+      <div id="secondPage" class="selected-photo hidden">
         <div class="selected-photo__content row justify-content-center">
           <p id="photoTitle" class="selected-photo__title сol-auto"></p>
-          <img id="photoImg" class="selected-photo__img">
+          <img id="photoImg" class="selected-photo__img" crossorigin="anonymous" src="493a2057a6f717b09dc4.png">
         </div>
-        <!-- <div class="selected-photo__footer row"> -->
-          <!-- <p id="photoDescription" class="selected-photo__description col-auto"></p> -->
-          <div class="selected-photo__activity row justify-content-center">
-            <input id="epicDateInput" class="selected-photo__datepicker col-auto" type="date"></input>
-            <button id="startSlideshowButton" class="selected-photo__button col-auto">Start slideshow</button>
-            <button class="selected-photo__button col-auto">Stop</button>
-            <button class="selected-photo__button col-auto">Download image</button>
-          </div> 
-        <!-- </div> -->
+        <div class="selected-photo__activity row justify-content-center">
+          <input id="epicDateInput" class="selected-photo__datepicker col-auto" type="date" min="2015-06-13" value="2022-06-01"></input>
+          <button id="startSlideshowButton" class="selected-photo__button col-auto">Start slideshow</button>
+          <button id="previousPhoto" class="selected-photo__button round col-auto">
+            <img class="selected-photo__left-arrow" src="889ac0aee6a1c32e4073.png" width="50px" height="50px">
+          </button>
+          <button id="nextPhoto" class="selected-photo__button round col-auto">
+            <img class="selected-photo__right-arrow" src="0c5324725a5ccbc20d71.png" width="50px" height="50px">
+          </button>
+          <button id="pauseInterval" class="selected-photo__button col-auto">Pause</button>
+          <a id="a" class="selected-photo__link" download="image.png">Download image</a>
+        </div>
+      </div>
+      <div class="modal" data-modal-window>
+        <div class="modal__content">
+          <div class="modal__inner">
+            <div class="modal__title">Incorrect date</div>
+            <div class="modal__modal-window">&times;</div>
+          </div>
+          <p>There are no photos for the given date try another one (for example 02-06-2022)</p>
+        </div>
       </div>
     </main>
   </body>
