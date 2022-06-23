@@ -7,10 +7,37 @@ let changedFormatDate;
 let num;
 let photo;
 
+const EPIC_API = {
+  IMAGES: {
+    NAMES_IMAGES:
+      'https://api.nasa.gov/EPIC/api/natural/date/{selectedDate}?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq',
+    SELECTED_IMAGE:
+      'https://api.nasa.gov/EPIC/archive/natural/{changedFormatDate}/png/{namesImages[num]}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq',
+  },
+};
+
+function isNullOrEmpty(value) {
+  return value === null || value === undefined || value === '';
+}
+
+function formatString(source, args) {
+  if (isNullOrEmpty(source)) return source;
+
+  return Array.isArray(args)
+    ? args.reduce(
+      (accumulator, value, index) => accumulator.replace(`{${index}}`, value?.toString()),
+      source,
+    )
+    : Object.entries(args).reduce(
+      (accumulator, [key, value]) => accumulator.replace(`{${key}}`, value?.toString()),
+      source,
+    );
+}
+
 function initEventListeners() {
   document
     .getElementById('getNextPage')
-    .addEventListener('click', changesClass);
+    .addEventListener('click', addRemoveClass);
   document
     .getElementById('startSlideshowButton')
     .addEventListener('click', getImage);
@@ -24,67 +51,48 @@ function initEventListeners() {
 }
 initEventListeners();
 
-function changesClass() {
-  document.getElementById('mainPage').classList.add('hidden');
-  document.getElementById('secondPage').classList.remove('hidden');
+function addRemoveClass() {
+  document.getElementById('page-information').classList.add('hidden');
+  document.getElementById('selected-photo').classList.remove('hidden');
+  document.querySelector('main').classList.add('changed-size-page-epic');
 }
 
 async function getNamesImages() {
-  selectedDate = document.getElementById('epicDateInput').value;
+  selectedDate = document.getElementById('dateImageInput').value;
   const response = await fetch(
-    `https://api.nasa.gov/EPIC/api/natural/date/${selectedDate}?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq`
+    formatString(EPIC_API.IMAGES.NAMES_IMAGES, { selectedDate }),
   );
   namesImages = [];
   const datesPhotos = await response.json();
   datesPhotos.forEach((element) => {
     namesImages.push(element.image);
   });
-  if (namesImages.length === 0) {
-    getModalError();
-    clearInterval(slideshowPhotos);
-  }
 }
 
-function getImage() {
-  if (selectedDate !== document.getElementById('epicDateInput').value) {
-    clearInterval(slideshowPhotos);
-    namesImages = [];
-    getNamesImages();
-    num = -1;
-  }
-  // photo = '';
-  changedFormatDate = selectedDate.replace(/-/gi, '/');
-  slideshowPhotos = setInterval(() => {
-    num++;
-    setImage();
-    if (namesImages[num + 1] === undefined) {
-      pauseInterval();
-    }
-  }, 3000);
-}
+function getModal() {
+  // const modal = document.querySelector('[data-modal-window]');
+  const modal = document.querySelector('.modal');
+  modal.classList.add('visible');
 
-function getModalError() {
-  const modal = document.querySelector('[data-modal-window]');
-  modal.style.display = 'block';
+  // modal.style.display = 'block';
+  // const close = modal.querySelector('.modal__modal-window');
+  // close.addEventListener('click', () => {
+  // modal.style.display = 'none';
+  // });
   const close = modal.querySelector('.modal__modal-window');
   close.addEventListener('click', () => {
-    modal.style.display = 'none';
+    // modal.style.display = 'none';
+    modal.classList.remove('visible');
   });
 
   window.onclick = (event) => {
     if (event.target.hasAttribute('data-modal-window')) {
-      modal.style.display = 'none';
+      modal.classList.remove('visible');
     }
   };
 }
 
-function pauseInterval() {
-  clearInterval(slideshowPhotos);
-  downloadImage();
-}
-
-const getBase64StringFromDataURL = (dataURL) =>
-  dataURL.replace('data:', '').replace(/^.+,/, '');
+const getBase64StringFromDataURL = (dataURL) => dataURL.replace('data:', '').replace(/^.+,/, '');
 
 function downloadImage() {
   const image = document.getElementById('photoImg');
@@ -105,11 +113,51 @@ function downloadImage() {
           .getElementById('a')
           .setAttribute(
             'href',
-            `data:application/octet-stream;base64,${base64Image}`
+            `data:application/octet-stream;base64,${base64Image}`,
           );
       };
       reader.readAsDataURL(blob);
     });
+}
+
+function setImage() {
+  if (namesImages[num + 1] === undefined) num--;
+  if (namesImages[num - 1] === undefined) num++;
+  // photo = `https://api.nasa.gov/EPIC/archive/natural/${changedFormatDate}/png/${namesImages[num]}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq`;
+  // var q = [changedFormatDate, namesImages[num]]
+  photo = formatString(EPIC_API.IMAGES.SELECTED_IMAGE, [changedFormatDate, namesImages[num]])
+  document.getElementById('photoImg').setAttribute('src', photo);
+  downloadImage();
+}
+
+function pauseInterval() {
+  clearInterval(slideshowPhotos);
+  downloadImage();
+}
+
+function getImage() {
+  if (selectedDate !== document.getElementById('dateImageInput').value) {
+    clearInterval(slideshowPhotos);
+    namesImages = [];
+    getNamesImages();
+    num = -1;
+  }
+  // setTimeout(() => {
+  //   if (namesImages.length === 0) {
+  //     getModal();
+  //     clearInterval(slideshowPhotos);
+  //   }
+  // }, 1000);
+  // photo = '';
+  changedFormatDate = selectedDate.replace(/-/gi, '/');
+  slideshowPhotos = setInterval(() => {
+    num++;
+    setImage();
+
+    if (namesImages[num + 1] === undefined) {
+      pauseInterval();
+    }
+  }, 3000);
 }
 
 function getPreviousPhoto() {
@@ -122,12 +170,4 @@ function getNextPhoto() {
   clearInterval(slideshowPhotos);
   num++;
   setImage();
-}
-
-function setImage() {
-  if (namesImages[num + 1] === undefined) num--;
-  if (namesImages[num - 1] === undefined) num++;
-  photo = `https://api.nasa.gov/EPIC/archive/natural/${changedFormatDate}/png/${namesImages[num]}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq`;
-  document.getElementById('photoImg').setAttribute('src', photo);
-  downloadImage();
 }

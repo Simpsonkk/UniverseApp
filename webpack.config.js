@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const moment = require('moment');
 
 module.exports = {
   entry: {

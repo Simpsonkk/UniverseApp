@@ -1,21 +1,50 @@
-.header__link {
-  text-decoration: none;
+:root {
+  --orange: rgba(255, 140, 0, 0.94);
+  --dark-yellow: rgba(222, 186, 4, 0.493);
+  --yellow: #debb04;
+  --black: rgba(0, 0, 0, 0.6);
+  --gray: #888;
+  --white: #fefefe;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  background: url(images/background_body.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+button,
+input {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
+  line-height: 30px;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
-  color: rgba(255, 140, 0, 0.94);
-  padding: 0px 40px;
-  margin-top: 20px;
+  color: var(--orange);
+  font-size: 18px;
+  background: transparent;
+  border: 4px solid var(--dark-yellow);
+  border-radius: 10px;
+  text-align: center;
 }
 
-.header__link_selected {
-  font-weight: 900;
+.hidden {
+  display: none;
 }
 
-.header__icon {
-  padding: 0;
+.changed-size-page-apod {
+  height: 1400px;
+}
+
+.changed-size-page-epic {
+  height: 920px;
 }
 
 .header {
@@ -23,213 +52,236 @@
   height: 122px;
   background-size: cover;
   background-repeat: no-repeat;
+  &__link {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--orange);
+    padding: 0px 40px;
+    margin-top: 20px;
+  }
+
+  &__link_selected {
+    font-weight: 900;
+  }
+
+  &__menu {
+    margin: 0 auto;
+    padding: 47px;
+    width: 974px;
+  }
 }
 
-.header__menu {
-  margin: 0 auto;
-  padding: 47px;
-  width: 974px;
+.page-information {
+  margin-bottom: 35px;
+
+  &__row {
+    margin-left: 200px;
+  }
+
+  &__title {
+    font-family: 'New Rocker', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 59px;
+    color: var(--yellow);
+    text-align: center;
+  }
+
+  &__description p {
+    font-family: 'New Tegomin', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 52px;
+    color: var(--yellow);
+    text-align: center;
+    width: 523px;
+  }
+
+  //EPIC
+  &__action {
+    margin-top: 20px;
+  }
+
+  &__depiction {
+    font-family: 'New Tegomin', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 52px;
+    color: var(--yellow);
+    text-align: center;
+    width: 620px;
+    margin: 0;
+    height: 470px;
+    padding-right: 100px;
+  }
+
+  &__main-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 80%;
+    margin-top: 15px;
+    margin-left: 116px;
+    border: 0;
+    &:hover {
+      border: 4px solid var(--dark-yellow);
+      transition-duration: 0.3s;
+    }
+  }
 }
 
-.container {
-  width: 1200px;
-  height: 1000px;
-}
+.page-actions {
+  margin-top: 0px;
+  margin-left: 200px;
 
-main {
-  background: url(images/background_body.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.initial-page__title,
-.selected-photo__title {
-  font-family: 'New Rocker', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 59px;
-  color: #debb04;
-  text-align: center;
-}
-
-.initial-page__description p {
-  font-family: 'New Tegomin', serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 52px;
-  color: #debb04;
-  text-align: center;
-  width: 523px;
-}
-
-.initial-page__input {
-  width: 187.32px;
-  height: 49px;
-  margin-right: 27.68px;
-  margin-left: 60px;
-}
-
-input::placeholder {
-  color: rgba(255, 140, 0, 0.94);
-}
-
-.initial-page__button,
-.selected-photo__datepicker {
-  width: 205px;
-  height: 49px;
-}
-
-button,
-input,
-.selected-photo__link {
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  line-height: 30px;
-  font-weight: 600;
-  color: rgba(255, 140, 0, 0.94);
-  font-size: 18px;
-  background: transparent;
-  border: 4px solid rgba(222, 186, 4, 0.493);
-  border-radius: 10px;
-  text-align: center;
-}
-
-.initial-page__actions,
-.selected-photo__datepicker {
-  margin-top: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-.selected-photo__input {
-  width: 187.32px;
-  height: 49px;
-}
-
-.selected-photo__img {
-  width: 1400px;
-  height: 900px;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid rgba(216, 184, 22, 0.505);
-  border-radius: 10px;
-}
-
-.selected-photo__description {
-  font-family: 'Montserrat', sans-serif;
-  width: 1100px;
-  text-align: center;
-  color: #e6c311d8;
-  font-weight: 600;
-  background: url(images/background__footer.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 13px;
-  padding: 0;
-  font-size: 16px;
-  line-height: 30px;
-}
-
-.selected-photo__input,
-.selected-photo__button,
-.selected-photo__link {
-  width: 120px;
-  height: 50px;
-  padding: 0;
-  margin: 0;
-}
-
-.selected-photo__button {
-  margin-top: 20px;
-}
-
-.selected-photo__input {
-  margin-top: 40px;
-}
-
-.selected-photo__footer {
-  margin: 0;
-  margin-top: 12px;
-  justify-content: center;
-}
-
-.selected-photo__header {
-  justify-content: center;
-}
-
-.selected-photo__actions {
-  display: flex;
-  flex-direction: column;
-}
-
-.changed-size-page {
-  height: 1400px;
-}
-
-.initial-page__depiction {
-  // width: 50%;
-  font-family: 'New Tegomin', serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 34px;
-  line-height: 52px;
-  color: #debb04;
-  text-align: center;
-  width: 620px;
-  margin: 0;
+  &__input {
+    width: 187.32px;
+    height: 49px;
+    margin-right: 27.68px;
+    margin-left: 60px;
+  }
+  &__button {
+    width: 205px;
+    height: 49px;
+  }
 }
 
 .selected-photo {
   opacity: 0;
   animation: ani 2.5s forwards;
-}
 
-@keyframes ani {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
+  @keyframes ani {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
-.wrapper {
-  width: 1300px;
-  height: 1000px;
-  margin: 0 auto;
-}
+  &__datepicker {
+    width: 205px;
+    height: 49px;
+  }
 
-.initial-page__main-button {
-  width: 170px;
-  height: 170px;
-  border-radius: 100%;
-  margin-top: 5px;
-  margin-left: 200px;
-  border: 0;
-  &:hover {
-    border: 4px solid rgba(222, 186, 4, 0.493);
-    transition-duration: 0.3s; 
+  &__title {
+    font-family: 'New Rocker', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 59px;
+    color: var(--yellow);
+    text-align: center;
+  }
+
+  &__img {
+    width: 1400px;
+    height: 900px;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid var(--dark-yellow);
+    border-radius: 10px;
+  }
+
+  &__description {
+    font-family: 'Montserrat', sans-serif;
+    width: 1100px;
+    text-align: center;
+    color: var(--yellow);
+    font-weight: 600;
+    background: url(images/background__footer.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 13px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 30px;
+    margin-right: 150px;
+  }
+
+  &__link {
+    width: 120px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+  }
+
+  //EPIC
+
+  &__link {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    line-height: 30px;
+    font-weight: 600;
+    color: var(--orange);
+    font-size: 18px;
+    background: transparent;
+    border: 4px solid var(--dark-yellow);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  &__datepicker {
+    margin-top: 20px;
+  }
+
+  &__button {
+    margin-top: 20px;
+  }
+
+  &__input {
+    margin-top: 40px;
+  }
+
+  &__activity button:nth-child(n) {
+    margin-left: 30px;
+  }
+
+  &__activity button:nth-of-type(1),
+  &__link {
+    margin-bottom: 30px;
+    width: 200px;
+  }
+
+  &__activity button:nth-child(5) {
+    width: 100px;
+    height: 50px;
+  }
+
+  &__activity button:nth-child(4) {
+    margin-left: 4px;
+  }
+
+  &__right-arrow,
+  &__left-arrow {
+    position: absolute;
+    bottom: 0px;
+    top: -3px;
+    left: 1px;
+  }
+
+  &__content img:last-child {
+    width: 900px;
+    height: 800px;
+  }
+
+  &__link {
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding-top: 5px;
+    &:hover {
+      color: var(--orange);
+    }
   }
 }
 
-.selected-photo__activity button:nth-child(n) {
-  margin-left: 30px;
-}
-
-.selected-photo__activity button:nth-of-type(1),
-.selected-photo__link {
-  // margin-left: 50px;
-  margin-bottom: 30px;
-  width: 200px;
-}
-
-.selected-photo__activity button:nth-child(5) {
-  width: 100px;
-}
-
-.selected-photo__activity button:nth-child(4) {
-  margin-left: 4px;
-}
 .round {
   width: 60px;
   height: 50px;
@@ -238,73 +290,69 @@ input,
   position: relative;
 }
 
-.selected-photo__right-arrow,
-.selected-photo__left-arrow {
-  position: absolute;
-  bottom: 0px;
-  top: -3px;
-  left: 1px;
-}
-
-.selected-photo__content img:last-child {
-  width: 900px;
-  height: 800px;
-}
-
-main {
-  overflow-x: hidden;
-}
-
-.selected-photo__link {
-  text-decoration: none;
-  margin-top: 20px;
-  margin-left: 50px;
-  padding-top: 5px;
-  &:hover {
-    color: rgba(255, 140, 0, 0.94);
-  }
-}
-
 .modal {
   font-family: 'Calibri';
   position: fixed;
-  display: none;
+  // display: block;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--black);
   z-index: 1000;
+
+  &__content {
+    background-color: var(--white);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--gray);
+    z-index: 9999;
+    text-align: center;
+    width: 800px;
+  }
+
+  &__modal-window {
+    color: var(--gray);
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 auto;
+  }
 }
 
-.modal .modal__content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  z-index: 9999;
-  text-align: center;
-  width: 800px;
+.shift-button {
+  position: absolute;
+  bottom: -550px;
+  right: 100px;
+  z-index: 99;
+  width: 150px;
+  height: 49px;
 }
 
-.modal .modal__content .modal__modal-window {
-  color: #aaa;
-  float: right;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.modal__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-.modal__title {
-  font-size: 25px;
-  font-weight: bold;
-  margin: 0 auto;
+.shift-input {
+  position: absolute;
+  bottom: -480px;
+  right: 70px;
+  z-index: 99;
+  width: 150px;
+  height: 49px;
 }
 
+.visible {
+  display: block;
+}
