@@ -9,6 +9,17 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/styles/stylee.scss":
+/*!********************************!*\
+  !*** ./src/styles/stylee.scss ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://universeapp/./src/styles/stylee.scss?");
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale/af.js":
 /*!******************************************!*\
   !*** ./node_modules/moment/locale/af.js ***!
@@ -1386,7 +1397,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\n//! mome
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/styles/style.scss */ \"./src/styles/style.scss\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ \"./node_modules/moment/moment.js\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nlet selectedDate;\n\nconst APOD_API = {\n  IMAGES: {\n    RANDOM:\n      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&count=1',\n    SELECTED_DATE:\n      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&date={selectedDate}',\n  },\n};\n\nfunction isNullOrEmpty(value) {\n  return value === null || value === undefined || value === '';\n}\n\nfunction formatString(source, args) {\n  if (isNullOrEmpty(source)) return source;\n\n  return Array.isArray(args)\n    ? args.reduce(\n      (accumulator, value, index) => accumulator.replace(`{${index}}`, value?.toString()),\n      source,\n    )\n    : Object.entries(args).reduce(\n      (accumulator, [key, value]) => accumulator.replace(`{${key}}`, value?.toString()),\n      source,\n    );\n}\n\nfunction setDate(value) {\n  selectedDate = value;\n}\n\nfunction initEventListeners() {\n  document\n    .getElementById('imageSearchButton')\n    .addEventListener('click', getImage);\n  document\n    .getElementById('dateImageInput')\n    .addEventListener('blur', () => setDate(document.getElementById('dateImageInput').value));\n}\n\nfunction setCurrentDate() {\n  const currentDate = moment__WEBPACK_IMPORTED_MODULE_1__();\n  selectedDate = currentDate.format('YYYY-MM-DD');\n  document.getElementById('dateImageInput').value = selectedDate;\n}\n\nfunction init() {\n  initEventListeners();\n  setCurrentDate();\n}\ninit();\n\nfunction addRemoveClass() {\n  document.getElementById('page-information').classList.add('hidden');\n  document.getElementById('selected-photo').classList.remove('hidden');\n  document.querySelector('main').classList.add('changed-size-page-apod');\n  document.getElementById('dateImageInput').classList.add('shift-input');\n  document.getElementById('imageSearchButton').classList.add('shift-button');\n}\n\nfunction setImage(data) {\n  document.getElementById('photoImg').setAttribute('src', data.url);\n  document.getElementById('photoTitle').textContent = data.title;\n  document.getElementById('photoDescription').textContent = data.explanation;\n}\n\nasync function getImage() {\n  if (\n    document.getElementById('page-information').classList.contains('hidden')\n    === false\n  ) {\n    addRemoveClass();\n  }\n\n  if (selectedDate === '') {\n    const response = await fetch(APOD_API.IMAGES.RANDOM);\n    const photo = await response.json();\n    setImage(photo[0]);\n  } else {\n    const response = await fetch(\n      formatString(APOD_API.IMAGES.SELECTED_DATE, { selectedDate }),\n    );\n    const photo = await response.json();\n    setImage(photo);\n  }\n  document.getElementById('dateImageInput').value = '';\n  setDate('');\n}\n\n\n//# sourceURL=webpack://universeapp/./src/modules/apod/apod.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_styles_stylee_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../src/styles/stylee.scss */ \"./src/styles/stylee.scss\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ \"./node_modules/moment/moment.js\");\n/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);\n\n// import '/src/styles/s.scss'\n\n// import 'font-awesome/css/font-awesome.css';\n\nlet selectedDate;\nconst APOD_API = {\n  IMAGES: {\n    RANDOM:\n      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&count=1',\n    SELECTED_DATE:\n      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&date={selectedDate}',\n  },\n};\n\nfunction isNullOrEmpty(value) {\n  return value === null || value === undefined || value === '';\n}\n\nfunction formatString(source, args) {\n  if (isNullOrEmpty(source)) return source;\n\n  return Array.isArray(args)\n    ? args.reduce(\n        (accumulator, value, index) =>\n          accumulator.replace(`{${index}}`, value?.toString()),\n        source\n      )\n    : Object.entries(args).reduce(\n        (accumulator, [key, value]) =>\n          accumulator.replace(`{${key}}`, value?.toString()),\n        source\n      );\n}\n\nfunction setDate(value) {\n  selectedDate = value;\n}\n\nfunction initEventListeners() {\n  document\n    .getElementById('imageSearchButton')\n    .addEventListener('click', getImage);\n\n  document\n    .getElementById('dateImageInput')\n    .addEventListener('blur', () =>\n      setDate(document.getElementById('dateImageInput').value)\n    );\n}\n\nfunction setCurrentDate() {\n  selectedDate = moment__WEBPACK_IMPORTED_MODULE_1__().format('YYYY-MM-DD');\n  document.getElementById('dateImageInput').value = selectedDate;\n}\n\nfunction init() {\n  initEventListeners();\n  setCurrentDate();\n}\ninit();\n\nfunction addRemoveClass() {\n  // addClassToElement('apod-info', 'hidden');\n\n  document.getElementById('apod-info').classList.add('hidden');\n  document.getElementById('apod-picture-container').classList.remove('hidden');\n  document.querySelector('main').classList.add('changed-size-page-apod');\n  document.getElementById('dateImageInput').classList.add('shift-input');\n  document.getElementById('imageSearchButton').classList.add('shift-button');\n}\n\nfunction setImage(data) {\n  document.getElementById('photoImg').setAttribute('src', data.url);\n  document.getElementById('photoTitle').textContent = data.title;\n  document.getElementById('photoDescription').textContent = data.explanation;\n}\n\nasync function getImage() {\n  if (!getElementClassList('apod-info').contains('hidden'))\n    addRemoveClass();\n\n  var pictureApi =\n    selectedDate === ''\n      ? APOD_API.IMAGES.RANDOM\n      : formatString(APOD_API.IMAGES.SELECTED_DATE, { selectedDate });\n\n  if (selectedDate === '') {\n    const response = await fetch(pictureApi);\n    const photo = await response.json();\n    setImage(photo[0]);\n  } else {\n    const response = await fetch(pictureApi);\n    const photo = await response.json();\n    setImage(photo);\n  }\n}\n\nfunction getElementClassList(element) {\n  return document.getElementById(element).classList;\n}\n\nfunction addClassToElement(element, value) {\n  document.getElementById(element).classList.add(value);\n}\n\n\n//# sourceURL=webpack://universeapp/./src/modules/apod/apod.js?");
 
 /***/ })
 
@@ -1419,42 +1430,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -1504,66 +1480,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"pageOne": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkuniverseapp"] = self["webpackChunkuniverseapp"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["src_styles_style_scss"], () => (__webpack_require__("./src/modules/apod/apod.js")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/modules/apod/apod.js");
 /******/ 	
 /******/ })()
 ;

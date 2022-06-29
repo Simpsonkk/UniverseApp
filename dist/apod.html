@@ -4,51 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet"> -->
     <title>APOD</title>
-  <script defer src="src_styles_style_scss.js"></script><script defer src="pageOne.js"></script><link href="style.css" rel="stylesheet"></head>
+  <script defer src="pageOne.js"></script><link href="stylee.css" rel="stylesheet"></head>
   <body>
     <header class="header">
       <div class="header__container">
         <nav class="header__menu row"> 
-          <img class="header__icon col-auto p-0" src="3a55b3a7441663e2beaa.png" width="58px" height="62px" alt="icon planet">
+          <img class="header__icon col-auto p-0" src="3a55b3a7441663e2beaa.png" alt="icon_planet">
           <a class="header__link header__link_selected col-auto" href="">APOD</a>
           <a class="header__link col-auto" href="">Earth</a>
-          <img class="header__icon col-auto p-0" src="8f7cf7002ad7e0b52e5b.webp" width="74px" height="72px" alt="icon NASA">
+          <img class="header__icon col-auto p-0" src="8f7cf7002ad7e0b52e5b.webp" alt="icon_NASA">
           <a class="header__link col-auto" href="">EPIC</a>
           <a class="header__link col-auto" href="">NASA APIs</a> 
-          <img class="header__icon col-auto p-0" src="0e353540357a40d9e74f.png" width="58px" height="62px" alt="icon planet">
+          <img class="header__icon col-auto p-0" src="0e353540357a40d9e74f.png" alt="icon_planet">
         </nav>
       </div>
     </header>
     <main>
-      <div id="page-information" class="page-information">
-        <div class="page-information__row">
-          <div class="page-information__title row offset-2">
+      <div id="apod-info" class="apod-info">
+        <div class="apod-info__row">
+          <div class="apod-info__title row offset-2">
             <p class="col-auto">Astronomy Picture of the Day</p>
           </div>
-          <div class="page-information__description row g-0 mt-2">
+          <div class="apod-info__description row g-0 mt-2">
             <p class="col-auto">Discover the cosmos! Choose a date and ENJOY! 
               Photograph of our fascinating universe is featured, along with a brief explanation 
-              written by a professional astronomer.
+              written by a professional astronomer
             </p>
           </div>
         </div>  
       </div>
-      <div class="page-information__actions row g-0">
-        <input id="dateImageInput" class="page-information__input col-auto" type="date"></input>
-        <button id="imageSearchButton" class="page-information__button col-auto">Enjoy</button>
+      <div class="apod-actions">
+        <input id="dateImageInput" class="apod-actions__input" type="date"></input>
+        <button id="imageSearchButton" class="apod-actions__button">Enjoy</button>
       </div>
-      <div id="selected-photo" class="selected-photo hidden">
-        <div class="selected-photo__row row justify-content-center">
-          <p id="photoTitle" class="selected-photo__title сol-auto"></p>
-          <img id="photoImg" class="selected-photo__img">
-          <p id="photoDescription" class="selected-photo__description col-auto"></p>
-        </div>
+      <div id="apod-picture-container" class="apod-picture-container hidden row justify-content-center">
+        <p id="photoTitle" class="apod-picture-container__title сol-auto"></p>
+        <img id="photoImg" class="apod-picture-container__img">
+        <p id="photoDescription" class="apod-picture-container__description col-auto"></p>
       </div>
     </main>
   </body>

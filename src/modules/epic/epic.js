@@ -1,4 +1,4 @@
-import '/src/styles/style.scss';
+// import '/src/styles/style.scss';
 
 let selectedDate = '';
 let slideshowPhotos;
@@ -12,7 +12,7 @@ const EPIC_API = {
     NAMES_IMAGES:
       'https://api.nasa.gov/EPIC/api/natural/date/{selectedDate}?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq',
     SELECTED_IMAGE:
-      'https://api.nasa.gov/EPIC/archive/natural/{changedFormatDate}/png/{namesImages[num]}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq',
+      'https://api.nasa.gov/EPIC/archive/natural/{changedFormatDate}/png/{selectedNameImage}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq',
   },
 };
 
@@ -25,13 +25,15 @@ function formatString(source, args) {
 
   return Array.isArray(args)
     ? args.reduce(
-      (accumulator, value, index) => accumulator.replace(`{${index}}`, value?.toString()),
-      source,
-    )
+        (accumulator, value, index) =>
+          accumulator.replace(`{${index}}`, value?.toString()),
+        source
+      )
     : Object.entries(args).reduce(
-      (accumulator, [key, value]) => accumulator.replace(`{${key}}`, value?.toString()),
-      source,
-    );
+        (accumulator, [key, value]) =>
+          accumulator.replace(`{${key}}`, value?.toString()),
+        source
+      );
 }
 
 function initEventListeners() {
@@ -52,7 +54,7 @@ function initEventListeners() {
 initEventListeners();
 
 function addRemoveClass() {
-  document.getElementById('page-information').classList.add('hidden');
+  document.getElementById('epic-info').classList.add('hidden');
   document.getElementById('selected-photo').classList.remove('hidden');
   document.querySelector('main').classList.add('changed-size-page-epic');
 }
@@ -60,7 +62,7 @@ function addRemoveClass() {
 async function getNamesImages() {
   selectedDate = document.getElementById('dateImageInput').value;
   const response = await fetch(
-    formatString(EPIC_API.IMAGES.NAMES_IMAGES, { selectedDate }),
+    formatString(EPIC_API.IMAGES.NAMES_IMAGES, { selectedDate })
   );
   namesImages = [];
   const datesPhotos = await response.json();
@@ -92,7 +94,8 @@ function getModal() {
   };
 }
 
-const getBase64StringFromDataURL = (dataURL) => dataURL.replace('data:', '').replace(/^.+,/, '');
+const getBase64StringFromDataURL = (dataURL) =>
+  dataURL.replace('data:', '').replace(/^.+,/, '');
 
 function downloadImage() {
   const image = document.getElementById('photoImg');
@@ -113,7 +116,7 @@ function downloadImage() {
           .getElementById('a')
           .setAttribute(
             'href',
-            `data:application/octet-stream;base64,${base64Image}`,
+            `data:application/octet-stream;base64,${base64Image}`
           );
       };
       reader.readAsDataURL(blob);
@@ -123,9 +126,11 @@ function downloadImage() {
 function setImage() {
   if (namesImages[num + 1] === undefined) num--;
   if (namesImages[num - 1] === undefined) num++;
-  // photo = `https://api.nasa.gov/EPIC/archive/natural/${changedFormatDate}/png/${namesImages[num]}.png?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq`;
-  // var q = [changedFormatDate, namesImages[num]]
-  photo = formatString(EPIC_API.IMAGES.SELECTED_IMAGE, [changedFormatDate, namesImages[num]])
+  const selectedNameImage = namesImages[num];
+  photo = formatString(EPIC_API.IMAGES.SELECTED_IMAGE, {
+    changedFormatDate,
+    selectedNameImage,
+  });
   document.getElementById('photoImg').setAttribute('src', photo);
   downloadImage();
 }
@@ -142,12 +147,12 @@ function getImage() {
     getNamesImages();
     num = -1;
   }
-  // setTimeout(() => {
-  //   if (namesImages.length === 0) {
-  //     getModal();
-  //     clearInterval(slideshowPhotos);
-  //   }
-  // }, 1000);
+  setTimeout(() => {
+    if (namesImages.length === 0) {
+      getModal();
+      clearInterval(slideshowPhotos);
+    }
+  }, 1300);
   // photo = '';
   changedFormatDate = selectedDate.replace(/-/gi, '/');
   slideshowPhotos = setInterval(() => {

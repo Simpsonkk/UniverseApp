@@ -1,89 +1,70 @@
-import '/src/styles/style.scss';
-import * as moment from 'moment';
+import '/src/styles/stylee.scss';
+import { ROUTES_API } from '../../shared/constants/api-routes';
+import { formatString } from '../../shared/constants/format_string';
+import AirDatepicker from 'air-datepicker';
+import localeEn from 'air-datepicker/locale/en';
+// import 'font-awesome/css/font-awesome.css';
 
 let selectedDate;
+const input = document.getElementById('datePictureInput');
 
-const APOD_API = {
-  IMAGES: {
-    RANDOM:
-      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&count=1',
-    SELECTED_DATE:
-      'https://api.nasa.gov/planetary/apod?api_key=AbRivaimagWGLedWpuIBbVuOKrRUxxejodfFWuAq&date={selectedDate}',
-  },
-};
-
-function isNullOrEmpty(value) {
-  return value === null || value === undefined || value === '';
-}
-
-function formatString(source, args) {
-  if (isNullOrEmpty(source)) return source;
-
-  return Array.isArray(args)
-    ? args.reduce(
-      (accumulator, value, index) => accumulator.replace(`{${index}}`, value?.toString()),
-      source,
-    )
-    : Object.entries(args).reduce(
-      (accumulator, [key, value]) => accumulator.replace(`{${key}}`, value?.toString()),
-      source,
-    );
-}
-
-function setDate(value) {
-  selectedDate = value;
-}
+new AirDatepicker(input, {
+  selectedDates: new Date(),
+  position: 'top center',
+  locale: localeEn,
+  dateFormat: 'yyyy-MM-dd',
+  maxDate: new Date(),
+  autoClose: true,
+});
 
 function initEventListeners() {
   document
-    .getElementById('imageSearchButton')
-    .addEventListener('click', getImage);
-  document
-    .getElementById('dateImageInput')
-    .addEventListener('blur', () => setDate(document.getElementById('dateImageInput').value));
+    .getElementById('pictureSearchButton')
+    .addEventListener('click', getAndSetPicture);
 }
+initEventListeners();
 
-function setCurrentDate() {
-  const currentDate = moment();
-  selectedDate = currentDate.format('YYYY-MM-DD');
-  document.getElementById('dateImageInput').value = selectedDate;
-}
-
-function init() {
-  initEventListeners();
-  setCurrentDate();
-}
-init();
-
-function addRemoveClass() {
-  document.getElementById('page-information').classList.add('hidden');
-  document.getElementById('selected-photo').classList.remove('hidden');
-  document.querySelector('main').classList.add('changed-size-page-apod');
-  document.getElementById('dateImageInput').classList.add('shift-input');
-  document.getElementById('imageSearchButton').classList.add('shift-button');
-}
-
-function setImage(data) {
-  document.getElementById('photoImg').setAttribute('src', data.url);
-  document.getElementById('photoTitle').textContent = data.title;
-  document.getElementById('photoDescription').textContent = data.explanation;
-}
-
-async function getImage() {
-  if (document.getElementById('page-information').classList.contains('hidden') === false)
-   addRemoveClass();
+async function getAndSetPicture() {
+  if (!getElementClassList('apod-info').contains('hidden')) getApodContant();
+  selectedDate = input.value;
+  let pictureApi =
+    selectedDate === ''
+      ? ROUTES_API.APOD.IMAGES.RANDOM
+      : formatString(ROUTES_API.APOD.IMAGES.SELECTED_DATE, { selectedDate });
 
   if (selectedDate === '') {
-    const response = await fetch(APOD_API.IMAGES.RANDOM);
-    const photo = await response.json();
-    setImage(photo[0]);
+    const response = await fetch(pictureApi);
+    const picture = await response.json();
+    setPicture(picture[0]);
   } else {
-    const response = await fetch(
-      formatString(APOD_API.IMAGES.SELECTED_DATE, { selectedDate }),
-    );
-    const photo = await response.json();
-    setImage(photo);
+    const response = await fetch(pictureApi);
+    const picture = await response.json();
+    setPicture(picture);
   }
-  document.getElementById('dateImageInput').value = '';
-  setDate('');
+}
+
+function getApodContant() {
+  addClassToElement('apod-info', 'hidden');
+  removeClassToElement('apod-picture-container', 'hidden');
+  addClassToElement('main', 'changed-size-page-apod');
+  addClassToElement('datePictureInput', 'shift-input');
+  addClassToElement('pictureSearchButton', 'shift-button');
+}
+
+function setPicture(data) {
+  document.getElementById('pictureImg').setAttribute('src', data.url);
+  document.getElementById('pictureTitle').textContent = data.title;
+  document.getElementById('pictureDescription').textContent = data.explanation;
+}
+
+function getElementClassList(element) {
+  return document.getElementById(element).classList;
+}
+
+function addClassToElement(element, value) {
+  document.getElementById(element).classList.add(value);
+}
+
+function removeClassToElement(element, value) {
+  document.getElementById(element).classList.remove(value);
 }

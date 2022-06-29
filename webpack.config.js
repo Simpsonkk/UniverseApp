@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     pageOne: 'C:/My_files/IT/UniverseApp/src/modules/apod/apod.js',
     pageTwo: 'C:/My_files/IT/UniverseApp/src/modules/epic/epic.js',
-    // pageThree: './src/pageThree/earth.js',
+    pageThree: 'C:/My_files/IT/UniverseApp/src/modules/earth/earth.js',
   },
   optimization: {
     splitChunks: {
@@ -38,28 +38,43 @@ module.exports = {
       filename: 'apod.html',
       template: 'C:/My_files/IT/UniverseApp/src/modules/apod/apod.html',
       chunks: ['pageOne'],
-      // inject: false,
     }),
     new HTMLPlugin({
       filename: 'epic.html',
       template: 'C:/My_files/IT/UniverseApp/src/modules/epic/epic.html',
       chunks: ['pageTwo'],
-      // inject: false,
+    }),
+    new HTMLPlugin({
+      filename: 'earth.html',
+      template: 'C:/My_files/IT/UniverseApp/src/modules/earth/earth.html',
+      chunks: ['pageThree'],
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
+      filename: 'stylee.css',
     }),
   ],
   module: {
     rules: [
       {
         test: /\.scss$/,
-        // test: /(\.css|\.scss)$/,
+        // test: /(\.css|.scss)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.html$/i,
         loader: 'html-loader',
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
     ],
   },
